@@ -14,7 +14,7 @@ function onLocationFound(){
 var marker;
 var circle;	
 mymap.locate({enableHighAccuracy:true, setView: true,maxZoom: 20, watch: true}) /* This will return map so you can do chaining */
-        .on('touchstart', function(e){
+        .on('locationfound', function(e){
 			var lat = (e.latitude);
 			var lng = (e.longitude);
 			var newLatLng = new L.LatLng(lat, lng);

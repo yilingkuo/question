@@ -29,7 +29,7 @@
 		#mapid { height: 400px; }
 		.demo-switch{padding:60px;}
 	</style>
-	<!--the following links incorporate the CSS required for custom icon creation-->
+	<!-- the following links incorporate the CSS required for custom icon creation -->
 	<link rel='stylesheet' href='css/ionicons.min.css'>
 	<link rel='stylesheet' href='css/leaflet.awesome-markers.css'>
 	<script src='js/leaflet.awesome-markers.js'></script>
@@ -85,12 +85,13 @@
           <h3>Questions App</h3>
         </div>
         
-        
+        <!-- css class: mdl layout fixed header helps fit the content in different size of devices -->
 		<div class="mdl-layout--fixed-header mdl-layout__header-row mdl-color--primary-dark">
+		<!-- Put a table here to align the two buttons -->
 		<table border = "0">
 		 <tr>
 		 <td>
-          <button id="onLocationFound" onclick="onLocationFound();return false;" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent">
+          <button id="onLocationFound" onclick="onLocationFound();return false;" title='Track Location' class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent">
             <i class="material-icons" role="presentation">my_location</i>
             <span class="visuallyhidden">Track location</span>
           </button>
@@ -100,28 +101,31 @@
           </div>
 		  </td>
 		  <td>
-		  <button id="getCoords" onclick="getCoords();return false;" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent">
+		  <!-- Once the button is trigger no need to re-click again -->
+		  <button id="getCoords" onclick="getCoords();return false;" title='Click to Get Coords' class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent">
             <i class="material-icons" role="presentation">add</i>
             <span class="visuallyhidden">Click to Get Coords</span>
           </button>
 		  </td>
 		  </tr>
-		  
 		</table>
 		</div>
       </header>
       <main class="mdl-layout__content">
-        <div class="mdl-layout__tab-panel is-active" id="overview">
-				  <div id="mapid"  class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell-middle mdl-cell--12-col mdl-grid">
-				  </div>
-          
+        <div class="mdl-layout__tab-panel is-active" id="overview">		
 		  <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+		  <!-- Hold the leaflet map to help user find out coordinates -->
+		  <!-- The text size are set for different size of screen -->
+			<div id="mapid"  class="mdl-color--white mdl-shadow--2dp mdl-cell-middle mdl-cell--12-col mdl-grid">
+			</div>
 			<div class="mdl-card mdl-cell mdl-cell--12-col">
               <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
                 <h4 class="mdl-cell mdl-cell--12-col">Question Setting</h4>
 				<div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
 				<h6>Set the point location here</h6>
-				<label for="location" class="mdl-cell mdl-cell--12-col">Location Name &nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text" size="35" id="location"/><br /><br />
+				<label for="location" class="mdl-cell mdl-cell--12-col">Location Name &nbsp;&nbsp;&nbsp;&nbsp;</label>
+				<input type="text" size="35" id="location"/><br /><br />
+				<!-- The coordinate will be filled in automatically according to the added marker -->
 				<p class="mdl-color--yellow">Click yellow + button to add markers to check coordinate in pop-up</p>
 				<label for="longitude" class="mdl-cell mdl-cell--12-col">Longitude &nbsp;&nbsp;&nbsp;&nbsp;</label>
 				<input type="text" size="35" id="longitude"/><br /><br />
@@ -143,6 +147,17 @@
                 <a id="startUpload" onclick="startDataUpload()" class="mdl-button">Upload Question</a>
               </div>
             </div>
+			</section>
+			<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+			<div class="mdl-card mdl-cell mdl-cell--12-col">
+			<div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+			<!-- This div is an AJAX action to show result -->
+			<div id="dataUploadResult" class="mdl-card__supporting-text section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+			<h4>The result of whether the upload is successful goes here</h4>
+			</div>
+			</div>
+			</div>
+			</section>
 
         </div>
         </main>

@@ -10,6 +10,8 @@ id: 'mapbox.streets'
 }).addTo(mymap);
 
 // Found location and add marker with accuracy of position
+// code modified from: https://stackoverflow.com/questions/40433317/leaflet-map-update-marker-using-navigator-geolocation-watchposition 
+// Accessed on May 2,2018
 function onLocationFound(){
 var marker;
 var circle;	
@@ -32,16 +34,6 @@ mymap.locate({enableHighAccuracy:true, setView: true,maxZoom: 20, watch: true}) 
 				marker.setLatLng(newLatLng);
 				circle.setLatLng(newLatLng);
 			}
-			//var marker = L.marker([e.latitude, e.longitude]).addTo(mymap);
-            //marker = L.marker([e.latitude, e.longitude]).update(marker).bindPopup('Your are here :)');
-            //var circle = L.circle([e.latitude, e.longitude], e.accuracy/2, {
-            //    weight: 1,
-            //    color: 'blue',
-            //    fillColor: '#cacaca',
-            //    fillOpacity: 0.2
-            //}).addTo(mymap);
-			//marker.setLatLng(newLatLng); 
-			//circle.setLatLng(newLatLng)
 			mymap.fitBounds(circle);
 })};
 

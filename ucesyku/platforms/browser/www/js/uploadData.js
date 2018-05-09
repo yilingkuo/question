@@ -1,3 +1,4 @@
+//The code is adapted from  
 function startDataUpload() {
 	alert ("start data upload");
 
@@ -9,37 +10,15 @@ function startDataUpload() {
 	var correct_answer = document.getElementById("correctanswer").value;
 
 	alert(location + " "+ option1 + " "+option2);
-	
+	if (correct_answer!==(option1||option1||option1||option1))
+	{alert('Please set answer identical to one option')}
 	var postString = "location="+location +"&option1="+option1+"&option2="+option2+"&option3="+option3+"&option4="+option4;
 	var postString = postString + "&correct_answer="+correct_answer
-	//	// now get the checkbox values - separate them with a | so that they can be // split later on if necessary
-	//var checkString = "";
-	//for (var i = 1;i< 5;i++){
-	//	if (document.getElementById("check"+i).checked === true) {
-	//		checkString = checkString + document.getElementById("check"+i).value + "||"
-	//	}
-    //
-	//}
-	//	// now get the select box values
-	//var language = document.getElementById("languageselectbox").value;
-	//postString = postString + "&language="+language;
 
-	// now get the geometry values
+	// get the geometry values
 	var latitude = document.getElementById("latitude").value;
 	var longitude = document.getElementById("longitude").value;
 	postString = postString + "&latitude=" + latitude + "&longitude=" + longitude;
-
-	//postString = postString + "&modulelist="+checkString;
-
-
-// now get the radio button values
-//	if (document.getElementById("morning").checked) {
-// 		 postString=postString+"&lecturetime=morning";
-//	}
-//	if (document.getElementById("afternoon").checked) {
-// 		 postString=postString+"&lecturetime=afternoon";
-//	}
-
 	
 	processData(postString);
 
@@ -49,6 +28,7 @@ var client;
 
 function processData(postString) {
    client = new XMLHttpRequest();
+   // The web link is for public.question data inserting
    client.open('POST','http://developer.cege.ucl.ac.uk:30269/uploadData',true);
    client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    client.onreadystatechange = dataUploaded;  
@@ -60,5 +40,6 @@ function dataUploaded() {
   if (client.readyState == 4) {
     // change the DIV to show the response
     document.getElementById("dataUploadResult").innerHTML = client.responseText;
+	if (client.responseText !=='row inserted'){alert('row data has mistake please restart http server')};
     }
 }
